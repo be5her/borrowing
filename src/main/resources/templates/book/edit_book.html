@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit book</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Library Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/books}">Books Management</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center">Update Book </h1>
+				<div class = "card-body">
+					<form th:action="@{/books/edit/{id} (id=${book.id})}" th:object = "${book}" method="POST">
+
+						<div class ="form-group">
+							<label>Book ISBN </label>
+							<input
+							type = "text"
+							name = "isbn"
+							th:field = "*{isbn}"
+							class = "form-control"
+							placeholder="Enter Book isbn" 
+							/>
+						</div>
+						
+						<div class ="form-group">
+							<label>Book Name</label>
+							<input
+							type = "text"
+							name = "bookName"
+							th:field = "*{bookName}"
+							class = "form-control"
+							placeholder="Enter book Name" 
+							/>
+						</div>
+
+                        <div class ="form-group">
+							<label>Book Author</label>
+							<input
+							type = "text"
+							name = "author"
+							th:field = "*{author}"
+							class = "form-control"
+							placeholder="Enter book Author" 
+							/>
+						</div>
+
+                        <div class ="form-group">
+							<label>Book Description</label>
+							<input
+							type = "text"
+							name = "description"
+							th:field = "*{description}"
+							class = "form-control"
+							placeholder="Enter book description" 
+							/>
+						</div>
+
+                        <div class ="form-group">
+							<label>Book Number Of Copies</label>
+							<input
+							type = "text"
+							name = "numberOfCopies"
+							th:field = "*{numberOfCopies}"
+							class = "form-control"
+							placeholder="Enter book number Of Copies" 
+							/>
+						</div>
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
