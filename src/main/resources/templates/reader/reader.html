@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="#">Library Management System</a>
+  <a class="navbar-brand" href="/">Library Management System</a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -22,18 +22,17 @@
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
+          <li class="nav-item">
+        <a class="nav-link" th:href="@{/books}">Books Management</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link active" th:href="@{/readers}">Readers Management</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/books}">Books Management</a>
-      </li>
+
 	  <li class="nav-item">
         <a class="nav-link" th:href="@{/borrowings}">Borrowing Management</a>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link" th:href="@{/api}">API</a>
-      </li>
+
     </ul>
   </div>
 </nav>
@@ -51,8 +50,13 @@
 		<table class = "table table-striped table-bordered">
 			<thead class = "table-dark">
 				<tr>
-					<th>Full Name</th>
-					<th>Email </th>
+				
+					<th>
+						<a th:href="@{'/readers/' + ${currentPage} + '?sortField=fullName&sortDir=' + ${reverseSortDir}}">Full Name</a>
+					</th>
+					<th>
+						<a th:href="@{'/readers/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a>
+					</th>
 					<th>Actions </th>
 				</tr>
 			</thead>
@@ -63,16 +67,48 @@
 					<td th:text = "${reader.email}"></td>
 					<td>
 						<a th:href = "@{/readers/edit/{id}(id=${reader.id})}"
-						 class = "btn btn-primary">Update</a>
+						 class = "btn btn-outline-primary">Update</a>
 						
 						<a th:href = "@{/readers/delete/{id}(id=${reader.id})}"
-						 class = "btn btn-danger">Delete</a>
+						 class = "btn btn-outline-danger">Delete</a>
 						 
 					</td>
 				</tr>
 			</tbody>
 		
 		</table>
+		
+		<div>&nbsp;</div>
+			<div><i>Sorted by [[${sortField}]] in [[${sortDir}]] order</i></div>
+			<div>&nbsp;</div>
+			<div th:if="${totalPages > 1}">
+				Total Items: [[${totalItems}]]
+				&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+				
+				<a th:if="${currentPage > 1}" th:href="@{'/readers/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a>
+				<span th:unless="${currentPage > 1}">First</span>
+				&nbsp;&nbsp;
+				
+				<a th:if="${currentPage > 1}" th:href="@{'/readers/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+				<span th:unless="${currentPage > 1}">Previous</span>
+				
+				&nbsp;&nbsp;
+				
+				<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+					<a th:if="${currentPage != i}" th:href="@{'/readers/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+					<span th:unless="${currentPage != i}">[[${i}]]</span>
+					&nbsp;
+				</span>
+				
+				<a th:if="${currentPage < totalPages}" th:href="@{'/readers/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+				<span th:unless="${currentPage < totalPages}">Next</span>
+				&nbsp;&nbsp;
+				
+				<a th:if="${currentPage < totalPages}" th:href="@{'/readers/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+				<span th:unless="${currentPage < totalPages}">Last</span>
+		</div>
+		
+		
 		
 	</div>
 </body>

@@ -22,7 +22,7 @@ public class BookApi {
 
     @GetMapping("/api/json/books")
     public List<Book> getBooksApi() {
-
+    	
         return bookService.getAllBook();
     }
 

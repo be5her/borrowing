@@ -29,13 +29,13 @@ public class Borrowing {
     private String status;
 
     @Column
-    private Timestamp startTime;
+    private String startTime;
 
     @Column
-    private Timestamp endTime;
+    private String endTime;
 
     @Column
-    private Timestamp actualReturnTime;
+    private String actualReturnTime;
 
     public Long getId() {
         return id;
@@ -57,15 +57,15 @@ public class Borrowing {
         return status;
     }
 
-    public Timestamp getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public Timestamp getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public Timestamp getActualReturnTime() {
+    public String getActualReturnTime() {
         return actualReturnTime;
     }
 
@@ -81,15 +81,15 @@ public class Borrowing {
         this.status = status;
     }
 
-    public void setStartTime(Timestamp startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(Timestamp endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public void setActualReturnTime(Timestamp actualReturnTime) {
+    public void setActualReturnTime(String actualReturnTime) {
         this.actualReturnTime = actualReturnTime;
     }
 }
