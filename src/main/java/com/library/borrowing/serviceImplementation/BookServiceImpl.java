@@ -2,9 +2,6 @@ package com.library.borrowing.serviceImplementation;
 
 import java.util.List;
 
-
-
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,24 +15,24 @@ import com.library.borrowing.service.BookService;
 
 @Service
 public class BookServiceImpl implements BookService {
-	@Autowired
+
+    @Autowired
     private BookRepository bookRepository;
 
     @Override
     public Page<Book> listAll(int pageNum, String sortField, String sortDir) {
-		
-		Pageable pageable = PageRequest.of(pageNum - 1, 5, 
-				sortDir.equals("asc") ? Sort.by(sortField).ascending()
-									  : Sort.by(sortField).descending()
-		);
-		
-		return bookRepository.findAll(pageable);
-	}
-    
+
+        Pageable pageable = PageRequest.of(pageNum - 1, 5,
+                sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                        : Sort.by(sortField).descending());
+
+        return bookRepository.findAll(pageable);
+    }
+
     @Override
     public List<Book> getAllBook() {
-    	 return bookRepository.findAll();
-	}
+        return bookRepository.findAll();
+    }
 
     @Override
     public Book saveBook(Book book) {

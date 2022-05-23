@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.library.borrowing.entity.Book;
 import com.library.borrowing.entity.Reader;
 import com.library.borrowing.repository.ReaderRepository;
 import com.library.borrowing.service.ReaderService;
@@ -25,17 +24,14 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public Page<Reader> listAll(int pageNum, String sortField, String sortDir) {
-		
-		Pageable pageable = PageRequest.of(pageNum - 1, 5, 
-				sortDir.equals("asc") ? Sort.by(sortField).ascending()
-									  : Sort.by(sortField).descending()
-		);
-		
-		return readerRepository.findAll(pageable);
-	}
-    
-    
-    
+
+        Pageable pageable = PageRequest.of(pageNum - 1, 5,
+                sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                        : Sort.by(sortField).descending());
+
+        return readerRepository.findAll(pageable);
+    }
+
     @Override
     public List<Reader> getAllReaders() {
         return readerRepository.findAll();

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -33,8 +33,8 @@ public class BorrowingApi {
 
     @PostMapping("api/json/borrowings")
     public Borrowing saveBorrowingApi(@RequestBody Borrowing borrowing) {
-        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
-    	return borrowingService.borrow(borrowing);
+        // Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        return borrowingService.borrow(borrowing);
     }
 
     @PutMapping("api/json/borrowings/{id}")
